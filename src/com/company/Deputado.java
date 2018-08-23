@@ -8,9 +8,9 @@ public class Deputado {
     private String StateCode;
     private int DeputyId;
     private int BuggedDate;
-    private ArrayList<Recibo> Receipt;
+    private ArrayList<com.company.Recibo> Receipt;
 
-    public Deputado(String deputyName, String politicalParty, String stateCode, int deputyId, int buggedDate, Recibo receipt) {
+    public Deputado(String deputyName, String politicalParty, String stateCode, int deputyId, int buggedDate, com.company.Recibo receipt) {
         this.DeputyName = deputyName;
         this.PoliticalParty = politicalParty;
         this.StateCode = stateCode;
