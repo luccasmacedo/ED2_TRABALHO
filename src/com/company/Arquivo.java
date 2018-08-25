@@ -12,6 +12,7 @@ public class Arquivo {
     private BufferedWriter bw;
     private FileReader read;
     private BufferedReader buffer;
+    private String path = "C:\\GIT\\deputies_dataset.csv";
 
     public void Criar(String nome) throws IOException {
         this.file = new File(nome);
@@ -30,10 +31,10 @@ public class Arquivo {
     }
 
     public void Fecha() throws IOException {
-        this.bw.close();
+        this.buffer.close();
     }
 
-    public BufferedReader Ler(String path) throws IOException {
+    public BufferedReader Ler() throws IOException {
         this.read = new FileReader(path); // Obtém o conteúdo do arquivo
         this.buffer = new BufferedReader(read); // Carrega o conteúdo em memória
 
