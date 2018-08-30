@@ -19,6 +19,14 @@ public class Deputado {
         this.Receipt.add(receipt);
     }
 
+    public ArrayList<Recibo> getReceipt() {
+        return Receipt;
+    }
+
+    public void setReceipt(Recibo receipt) {
+        this.Receipt.add(receipt);
+    }
+
     public String getDeputyName() {
         return DeputyName;
     }

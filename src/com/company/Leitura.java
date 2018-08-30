@@ -4,22 +4,67 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Leitura
+public class Leitura <T>
 {
-
     private Arquivo arquivo;
+    private String separador = ";";
+    private BufferedReader buffer;
 
-    public Leitura(Arquivo a)
-    {
+    public Leitura(Arquivo a) throws IOException {
         this.arquivo = a;
+        this.buffer = arquivo.Obter();
     }
 
-    public ArrayList<Integer> getColumnValueInBufferFile(int columnsQuantityInALine) throws IOException {
-        String line;
-        String separador = ";";
+    public T getDeputityInfos(int description) throws IOException {
+
         Boolean header = true;
+        String line;
+
+        try
+        {
+            while((line = buffer.readLine()) != null)
+            {
+                if (header || line.trim().isEmpty())
+                {
+                    header = false;
+                    continue;
+                }
+
+                String[] columns = line.split(separador, 10);
+
+                if(!this.columnsLengthIsInvalid(columns.length, 10))
+                {
+                    if(description == 1)
+                    {
+                        int id = Integer.parseInt(columns[2]);
+                        Registro r = new Registro(columns, id);
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            e.getMessage();
+        }
+        finally
+        {
+            arquivo.Fecha();
+        }
+
+        return null;
+    }
+
+    /**
+     * getReceiptValues recebe como parametro a quantidade de colunas que um arquivo pode ter
+     * @type int
+     * @return ArrayList<Integer>
+     * */
+
+    public Integer[] getReceiptValues(int columnsQuantityInALine) throws IOException {
+        Boolean header = true;
+        String line;
+
         ArrayList<Integer> values = new ArrayList<Integer>();
-        BufferedReader buffer = arquivo.Ler();
 
         try
         {
@@ -48,15 +93,7 @@ public class Leitura
             arquivo.Fecha();
         }
 
-        return values;
-    }
-
-    private void setHeaderExists(boolean header, String line)
-    {
-        if (header || line.trim().isEmpty())
-        {
-            header = false;
-        }
+        return values.toArray(new Integer[values.size()]);
     }
 
     private boolean columnsLengthIsInvalid(int quantityColumns, int originalQuantityColumnsInALine)
@@ -70,14 +107,4 @@ public class Leitura
         return false;
     }
 
-//    try
-//    {
-//        //Recibo recibo = new Recibo(colunas[1], colunas[6], colunas[8], colunas[7], Integer.parseInt(colunas[9]));
-//        //Deputado deputado = new Deputado(colunas[5], colunas[3], colunas[4], Integer.parseInt(colunas[2]),  Integer.parseInt(colunas[0]), recibo);
-//        //deputados.add(deputado);
-//    }
-//                catch (Exception e)
-//    {
-//        e.getMessage();
-//    }
 }

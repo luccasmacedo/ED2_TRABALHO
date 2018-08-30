@@ -27,11 +27,11 @@ public class QuickSort <T extends Comparable<T>>{
             recQuickSort(vet,partition + 1, right);
         }
     }
-    public void quickSort(T[] vet, int size){
+    public void quickSort(T[] vet){
         numberComparisionsKey = 0;
         numberCopies = 0;
         long startTime = System.nanoTime();
-        recQuickSort(vet, 0, size - 1);
+        recQuickSort(vet, 0, vet.length - 1);
         estimatedTime = System.nanoTime() - startTime;
     }
     private int partitionIt(T vet[], int left, int right, T pivot) {

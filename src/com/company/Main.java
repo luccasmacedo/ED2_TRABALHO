@@ -12,11 +12,9 @@ public class Main
 
     public static void main(String[] args) throws IOException
     {
-        Integer teste[] = new Integer[20];
-        for(int i = 0; i < 20; i ++) {
-            teste[i] = (20 - i);
-        }
-        Integer teste1[] = Arrays.copyOfRange(teste, 3, 6);
+        Leitura leitura = new Leitura(new Arquivo());
+
+        Integer teste1[] = Arrays.copyOfRange(leitura.getReceiptValues(10), 3, 10);
 
         for(Integer iterator: teste1){
             System.out.println(iterator);
