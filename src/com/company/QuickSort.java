@@ -1,25 +1,25 @@
 package com.company;
 
-public class QuickSort {
+public class QuickSort <T extends Comparable<T>>{
 
     private int numberComparisionsKey;
     private int numberCopies;
     private long estimatedTime;
 
-    private void swap(int[] vet, int dex1, int dex2) {
-        int temp;
+    private void swap(T[] vet, int dex1, int dex2) {
+        T temp;
         temp = vet[dex1];
         vet[dex1] = vet[dex2];
         vet[dex2] = temp;
         numberCopies += 3;
     }
-    private void recQuickSort(int[] vet, int left, int right){
+    private void recQuickSort(T[] vet, int left, int right){
 
         if(right - left <= 0) {
             numberComparisionsKey++;
             return;
         }else{
-            int pivot = vet[right];
+            T pivot = vet[right];
             numberCopies++;
 
             int partition = partitionIt(vet,left, right, pivot);
@@ -27,24 +27,24 @@ public class QuickSort {
             recQuickSort(vet,partition + 1, right);
         }
     }
-    public void quickSort(int[] vet, int size){
+    public void quickSort(T[] vet, int size){
         numberComparisionsKey = 0;
         numberCopies = 0;
         long startTime = System.nanoTime();
         recQuickSort(vet, 0, size - 1);
         estimatedTime = System.nanoTime() - startTime;
     }
-    private int partitionIt(int vet[], int left, int right, int pivot) {
+    private int partitionIt(T vet[], int left, int right, T pivot) {
         int leftPtr = left - 1;
         numberCopies++;
         int rightPtr = right;
         numberCopies++;
 
         while (true) {
-            while (vet[++leftPtr] < pivot){
+            while (pivot.compareTo(vet[++leftPtr]) > 0){
                 numberComparisionsKey++;
             }
-            while (rightPtr > 0 && vet[--rightPtr] > pivot){
+            while (rightPtr > 0 && (vet[--rightPtr].compareTo(pivot) > 0)){
                 numberComparisionsKey++;
             }
 

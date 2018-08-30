@@ -11,13 +11,15 @@ public class Main
 
     public static void main(String[] args) throws IOException
     {
-        Arquivo arquivo = new Arquivo();
-        Leitura leitura = new Leitura(arquivo);
+        Integer teste[] = new Integer[20];
+        for(int i = 0; i < 20; i ++){
+            teste[i] = (20 - i);
+        }
+        QuickSort<Integer> sort = new QuickSort<>();
+        sort.quickSort(teste,20);
 
-        //BufferedReader buffer = arquivo.Ler();
-        //ArrayList<Deputado> deputados = new ArrayList<Deputado>();
-        Sort sort = new Sort();
-        //sort.InsertionSort(leitura.getColumnValueInBufferFile(10));
-
+        for(Integer iterator: teste){
+            System.out.println(iterator);
+        }
     }
 }
