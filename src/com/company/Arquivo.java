@@ -34,7 +34,7 @@ public class Arquivo {
         this.buffer.close();
     }
 
-    public BufferedReader Ler() throws IOException {
+    public BufferedReader Obter() throws IOException {
         this.read = new FileReader(path); // Obtém o conteúdo do arquivo
         this.buffer = new BufferedReader(read); // Carrega o conteúdo em memória
 
