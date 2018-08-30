@@ -15,7 +15,7 @@ public class Main
     {
         Leitura leitura = new Leitura(new Arquivo());
         ArrayList<Deputado> deputados = leitura.getDeputityInfos(1);
-
+        //a
         //Integer teste1[] = Arrays.copyOfRange(leitura.getReceiptValues(10), 3, 10);
 
         for(Deputado deputado : deputados){

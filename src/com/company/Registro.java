@@ -8,10 +8,7 @@ public class Registro
     private static int lastId;
     private static int lastIndex = 0;
 
-    Registro()
-    {
-
-    }
+    Registro() { }
 
     Registro(String[] columns, int id)
     {

@@ -59,12 +59,6 @@ public class Leitura <T>
         return (ArrayList<T>) r.getDeputities();
     }
 
-    /**
-     * getReceiptValues recebe como parametro a quantidade de colunas que um arquivo pode ter
-     * @type int
-     * @return ArrayList<Integer>
-     * */
-
     public Integer[] getReceiptValues(int columnsQuantityInALine) throws IOException {
         Boolean header = true;
         String line;
