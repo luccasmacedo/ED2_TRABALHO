@@ -3,6 +3,7 @@ package com.company;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class Leitura <T>
 {
@@ -15,10 +16,13 @@ public class Leitura <T>
         this.buffer = arquivo.Obter();
     }
 
-    public T getDeputityInfos(int description) throws IOException {
+    public ArrayList<T> getDeputityInfos(int action) throws IOException {
 
         Boolean header = true;
         String line;
+
+        ArrayList<T> values = new ArrayList<T>();
+        Registro r = new Registro();
 
         try
         {
@@ -34,11 +38,12 @@ public class Leitura <T>
 
                 if(!this.columnsLengthIsInvalid(columns.length, 10))
                 {
-                    if(description == 1)
+                    if(action == 1)
                     {
                         int id = Integer.parseInt(columns[2]);
-                        Registro r = new Registro(columns, id);
+                        new Registro(columns, id);
                     }
+
                 }
             }
         }
@@ -51,7 +56,7 @@ public class Leitura <T>
             arquivo.Fecha();
         }
 
-        return null;
+        return (ArrayList<T>) r.getDeputities();
     }
 
     /**
@@ -106,5 +111,4 @@ public class Leitura <T>
 
         return false;
     }
-
 }

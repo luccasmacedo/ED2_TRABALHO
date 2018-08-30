@@ -5,30 +5,44 @@ import java.util.ArrayList;
 public class Registro
 {
     private static ArrayList<Deputado> deputities = new ArrayList<Deputado>();
+    private static int lastId;
+    private static int lastIndex = 0;
+
+    Registro()
+    {
+
+    }
 
     Registro(String[] columns, int id)
     {
-        registerDeputity(columns, id);
+        registerDeputities(columns, id);
     }
 
-    public void registerDeputity(String[] columns, int id)
+    private void registerDeputities(String[] columns, int id)
     {
         if(!this.verifyDeputity(id))
-            deputities.add(new Deputado(columns[5], columns[3], columns[4], Integer.parseInt(columns[2]), Integer.parseInt(columns[0]), this.getRecepit(columns)));
+        {
+            Deputado deputity = new Deputado(columns[5], columns[3], columns[4], Integer.parseInt(columns[2]), Integer.parseInt(columns[0]), this.getRecepit(columns));
+
+            deputities.add(deputity);
+            this.lastIndex++;
+        }
         else
-            deputities.get(this.getIndex(id)).setReceipt(this.getRecepit(columns));
+            deputities.get(this.lastIndex - 1).setReceipt(this.getRecepit(columns));
+            //deputities.get(this.getIndex(id)).setReceipt(this.getRecepit(columns));
     }
 
-    public Recibo getRecepit(String[] columns)
+    private Recibo getRecepit(String[] columns)
     {
         return new Recibo(columns[1], columns[6], columns[8], columns[7], Integer.parseInt(columns[9]));
     }
 
     private boolean verifyDeputity(int id)
     {
-        for (Deputado deputity : deputities)
-            if(deputity.getDeputyId() == id)
+            if(this.lastId == id)
                 return true;
+            else
+                this.lastId = id;
             return false;
     }
 
@@ -38,5 +52,10 @@ public class Registro
             if(deputities.get(i).getDeputyId() == id)
                 return i;
             return -1;
+    }
+
+    public ArrayList<Deputado> getDeputities()
+    {
+        return deputities;
     }
 }
