@@ -26,7 +26,6 @@ public class Registro
         }
         else
             deputities.get(this.lastIndex - 1).setReceipt(this.getRecepit(columns));
-            //deputities.get(this.getIndex(id)).setReceipt(this.getRecepit(columns));
     }
 
     private Recibo getRecepit(String[] columns)
@@ -41,14 +40,6 @@ public class Registro
             else
                 this.lastId = id;
             return false;
-    }
-
-    private int getIndex(int id)
-    {
-        for(int i = 0; i < deputities.size(); i++)
-            if(deputities.get(i).getDeputyId() == id)
-                return i;
-            return -1;
     }
 
     public ArrayList<Deputado> getDeputities()

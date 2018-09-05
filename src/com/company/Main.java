@@ -14,19 +14,19 @@ public class Main
     public static void main(String[] args) throws IOException
     {
         Leitura leitura = new Leitura(new Arquivo());
-        ArrayList<Deputado> deputados = leitura.getDeputityInfos(1);
-        //a
-        //Integer teste1[] = Arrays.copyOfRange(leitura.getReceiptValues(10), 3, 10);
+        //ArrayList<Deputado> deputados = leitura.getDeputityInfos(1);
 
-        for(Deputado deputado : deputados){
-            System.out.println("Nome: " + deputado.getDeputyName());
-            for(Recibo recibo : deputado.getReceipt())
-            {
-                System.out.println(recibo.getEstablishmentName());
-                System.out.println(recibo.getReceiptValue());
-                System.out.println(recibo.getReceiptDescription());
-            }
-            System.out.println();
-        }
+        Integer teste1[] = Arrays.copyOfRange(leitura.getReceiptValues(), 3, 10);
+
+//        for(Deputado deputado : deputados){
+//            System.out.println("Nome: " + deputado.getDeputyName());
+//            for(Recibo recibo : deputado.getReceipt())
+//            {
+//                System.out.println(recibo.getEstablishmentName());
+//                System.out.println(recibo.getReceiptValue());
+//                System.out.println(recibo.getReceiptDescription());
+//            }
+//            System.out.println();
+//        }
     }
 }

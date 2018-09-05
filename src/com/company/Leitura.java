@@ -3,25 +3,23 @@ package com.company;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class Leitura <T>
 {
-    private Arquivo arquivo;
-    private String separador = ";";
+    private Arquivo file;
+    private String separator = ";";
     private BufferedReader buffer;
 
     public Leitura(Arquivo a) throws IOException {
-        this.arquivo = a;
-        this.buffer = arquivo.Obter();
+        this.file = a;
+        this.buffer = file.Obter();
     }
 
-    public ArrayList<T> getDeputityInfos(int action) throws IOException {
+    public ArrayList<T> getDeputityInfos() throws IOException {
 
         Boolean header = true;
         String line;
 
-        ArrayList<T> values = new ArrayList<T>();
         Registro r = new Registro();
 
         try
@@ -34,16 +32,12 @@ public class Leitura <T>
                     continue;
                 }
 
-                String[] columns = line.split(separador, 10);
+                String[] columns = line.split(separator, 10);
 
                 if(!this.columnsLengthIsInvalid(columns.length, 10))
                 {
-                    if(action == 1)
-                    {
-                        int id = Integer.parseInt(columns[2]);
-                        new Registro(columns, id);
-                    }
-
+                    int id = Integer.parseInt(columns[2]);
+                    new Registro(columns, id);
                 }
             }
         }
@@ -53,13 +47,13 @@ public class Leitura <T>
         }
         finally
         {
-            arquivo.Fecha();
+            file.Fecha();
         }
 
         return (ArrayList<T>) r.getDeputities();
     }
 
-    public Integer[] getReceiptValues(int columnsQuantityInALine) throws IOException {
+    public Integer[] getReceiptValues() throws IOException {
         Boolean header = true;
         String line;
 
@@ -75,9 +69,9 @@ public class Leitura <T>
                     continue;
                 }
 
-                String[] columns = line.split(separador, columnsQuantityInALine);
+                String[] columns = line.split(separator, 10);
 
-                if(!this.columnsLengthIsInvalid(columns.length, columnsQuantityInALine))
+                if(!this.columnsLengthIsInvalid(columns.length, 10))
                 {
                     values.add(Integer.parseInt(columns[9]));
                 }
@@ -89,7 +83,7 @@ public class Leitura <T>
         }
         finally
         {
-            arquivo.Fecha();
+            file.Fecha();
         }
 
         return values.toArray(new Integer[values.size()]);
